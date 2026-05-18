@@ -10,7 +10,13 @@ is intended for use in data cleaning, exploratory data analysis, and preprocessi
 
 ## Installation
 
-You can install the development version of `outlying` from [GitHub](https://github.com/P10911004-NPUST/outlying) with:
+You can install the package from CRAN with:
+
+``` r
+install.packages("outlying")
+```
+
+or the development version from [GitHub](https://github.com/P10911004-NPUST/outlying) with:
 
 ``` r
 if (!require(devtools)) install.packages("devtools")
