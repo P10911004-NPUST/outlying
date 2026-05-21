@@ -1,5 +1,3 @@
-# outlying 0.0.2
-
 # outlying 0.0.1
 
 * Initial CRAN submission.
