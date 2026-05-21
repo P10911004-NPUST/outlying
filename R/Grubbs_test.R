@@ -1,20 +1,25 @@
 #' @title Grubbs' test
 #'
 #' @description
-#' Iteratively search for all possible outliers in a numeric vector.
+#' Iteratively search for all possible outliers in a numeric vector. The default method is a
+#' modification version of Grubbs' test, which is slightly more sensitive to "far-points" compare
+#' to the original one. Please change the `sensitivity` to 1 if the original test is preferred.
 #'
 #' @param x A numeric vector.
 #' @param alpha Default: 0.05 (two-tailed, thus 0.025 for each side).
 #' @param min_n A positive integer (default: 7). The minimum observations required for the test.
 #' @param iteration How many iterations of the test should be proceeded (default: -1; means unlimited)?
-#'  Each iteration will only recognize one outlier. For example, `iteration = 3` means the test will find
-#'  no more than 3 outliers.
+#'      Each iteration will only recognize one outlier. For example, `iteration = 3` means the test will find
+#'      no more than 3 outliers.
 #' @param max_out The maximum proportion (ranged from 0 to 1) of outliers to be detected in the
-#'  dataset (default: 0.2, which means the data contain no more than 20% of outliers data points).
-#'  If too many outliers, simply discarding them using this approach might be inappropriate.
+#'      dataset (default: 0.2, which means the data contain no more than 20% of outliers data points).
+#'      If too many outliers, simply discarding them using this approach might be inappropriate.
 #' @param use_median Use the median or the mean value as the center (default: FALSE).
-#' @param sensitivity An integer value range from 1 to 3.
-#'  The higher the value, the more sensitive of the test to outliers (default: 2).
+#' @param sensitivity An integer value range from 1 to 3 (default: 3).
+#'      The higher the value, the more sensitive of the test.
+#'      Value of 1 is essentially the original Grubbs' test, which is probably too conservative.
+#'      Value of 2 recalculates the mean after discarding the outlier for each iteration.
+#'      Value of 3 is same with 2, but the standard deviation is also recalculated.
 #' @param verbose Should the output includes statistics result (default: FALSE)?
 #'
 #' @returns By default (verbose = FALSE), return a logical named vector indicating the
@@ -47,7 +52,7 @@ Grubbs_test <- function(
         iteration = -1L,
         max_out = 0.2,
         use_median = FALSE,
-        sensitivity = 2,
+        sensitivity = 2L,
         verbose = FALSE
 ) {
     if (!is.atomic(x) || !is.null(dim(x)) || !(is.double(x) | is.integer(x)))
@@ -144,7 +149,7 @@ Grubbs_test <- function(
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # Internal function for Grubbs_test()
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-.GrubbsTest <- function(x, alpha = 0.05, use_median = FALSE, sensitivity = 2)
+.GrubbsTest <- function(x, alpha = 0.05, use_median = FALSE, sensitivity = 2L)
 {
     if (!is.atomic(x) || !is.null(dim(x)) || !(is.double(x) || is.integer(x)))
         stop("`x` should be a numeric vector")
