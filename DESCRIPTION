@@ -8,6 +8,8 @@ Description:
     The package supports identification of anomalous observations in numerical data and 
     is intended for use in data cleaning, exploratory data analysis, and preprocessing workflows.
 License: MIT + file LICENSE
+URL: https://github.com/P10911004-NPUST/outlying
+BugReports: https://github.com/P10911004-NPUST/outlying/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
