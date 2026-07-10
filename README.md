@@ -24,8 +24,8 @@ install.packages("outlying")
 or the development version from [GitHub](https://github.com/P10911004-NPUST/outlying) with:
 
 ``` r
-if (!require(devtools)) install.packages("devtools")
-devtools::install_github("P10911004-NPUST/outlying")
+if (!require("pak")) install.packages("pak")
+pak::pak("P10911004-NPUST/outlying")
 ```
 
 # Quick start
