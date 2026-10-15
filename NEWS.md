@@ -1,4 +1,4 @@
-# outlying 0.0.3
+# outlying 0.0.2
 
 # outlying 0.0.1
 
